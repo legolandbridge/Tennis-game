@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">  
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">  
+
+<head>  
+
+	<title>Tennis Virtual Drawsheet</title>  
+	
+	<meta name="description" content="Tennis Tour Simulation" />
+	<meta name="keywords" content="tennis, draw, game, season" />
+	<meta name="author" content="Thomas Collardeau on Feb 1, 2010" />
+	
+	<link href="style.css" rel="stylesheet" type="text/css" />  
+	<script type="text/javascript" src="player.js"></script>
+	<script type="text/javascript" src="tournament.js"></script>
+	<script type="text/javascript" src="season.js"></script>
+	<script type="text/javascript" src="setup.js"></script>
+	<script type="text/javascript" src="jquery/jquery-1.3.2.min.js"></script>
+	<script type="text/javascript" src="jquery.js"></script>
+
+</head>  
+
+
+<body>  
+	<h1>Tennis Season Simulation</h1>
+	
+	<div id="header">	
+		<p id="details">
+			<script type="text/javascript">currentTournament.displaySpecs();</script>
+		</p>
+		<h3 id="headline">Australian Open</h3>
+	</div>
+	
+	<div id="sidebar">
+		<h5>Rankings</h5>
+		<div id="rankings">	
+			<small id="rankUpdate">Start of Season</small><br />			
+				
+			<table>
+			<script type="text/javascript">	
+				var i, l;
+				for (i=0, l=players.length; i < l; i +=1) {
+					document.write("<tr>"); 
+					document.write("<td class=\"position\">" + (i+1) + ".</td>"); 
+					document.write("<td id=\"r" + i + "\">" + players[i].lastName + "</td>");				
+					document.write("<td class=\"points\" id=\"pts" + i + "\">" + 0 + "</td>");
+					document.write("</tr>");  
+				}
+			</script>			
+			</table>
+				
+			<a href="#" onclick="displayStats(); return false;">Full stats</a>
+		</div>
+			
+		<h5>Schedule</h5>			
+		<div id="schedule">
+			<script type="text/javascript">
+				var i, l; 
+				for (i=0, l=schedule.length; i<l; i++) {
+					document.write("<span id=\"s" + i + "\">" + schedule[i].name + "</span><br />");
+					document.write("<div id=\"w" +i + "\" class=\"winner\">Winner</div>");		
+				}	
+			</script>
+		</div>
+
+	</div>
+
+	<div id="main">
+	
+		<div id="court">
+
+			<div id="scoreboard">
+				<div id = "preview"><p>The Season begins!</p><p id="directions">Use buttons -></div>
+			</div>
+				
+			<div id="draw">
+						
+				<table>
+				<tr>
+				<th>1/8</th>
+				<th>1/4</th>
+				<th>1/2</th>
+				<th>F</th>
+				<th>Winner</th>
+				</tr>
+				
+				<tr>
+				<td id="p0"><b>______</b></td>
+				<td></td><td></td><td></td><td></td>
+				</tr>
+				<tr>
+				<td id="p1">______</td>
+				<td id="p16"></td>
+				<td></td><td></td><td></td>
+				</tr>
+				<tr>
+				<td style="text-align: right"><br /></td>
+				<td></td>
+				<td id="p24"></td>
+				<td></td><td></td>
+				</tr>
+				<tr>
+				<td id="p2">______</td>
+				<td id="p17"></td>
+				<td></td><td></td><td></td>
+				</tr>
+				<tr>
+				<td id="p3"><b>______</b></td>
+				<td></td><td></td><td></td><td></td>
+				</tr>
+				<tr>
+				<td><br /></td>
+				<td></td>
+				<td></td>
+				<td id="p28"></td>
+				<td></td>
+				</tr>
+				<tr>
+				<td id="p4"><b>______</b></td>
+				<td></td><td></td><td></td><td></td>
+				</tr>
+				<tr>
+				<td id="p5">______</td>
+				<td id="p18"></td>
+				<td></td><td></td><td></td>
+				</tr>
+				<tr>
+				<td><br /></td>
+				<td></td>
+				<td id="p25"></td>
+				<td></td><td></td>
+				</tr>
+				<tr>
+				<td id="p6">______</td>
+				<td id="p19"></td>
+				<td></td><td></td><td></td>
+				</tr>
+				<tr>
+				<td id="p7"><b>______</b></td>
+				<td></td><td></td><td></td><td></td>
+				</tr>
+				<tr>
+				<td><br /></td>
+				<td></td><td></td><td></td>
+				<td id="p30"></td>
+				</tr>
+				<tr>
+				<td> </td>
+				<td></td><td></td><td></td><td></td>
+				</tr>
+				<tr>
+				<td id="p8">______<b></b></td>
+				<td></td><td></td><td></td><td></td>
+				</tr>
+				<tr>
+				<td id="p9">______</td>
+				<td id="p20"></td>
+				<td></td><td></td><td></td>
+				</tr>
+				<tr>
+				<td><br /></td>
+				<td></td>
+				<td id="p26"></td>
+				<td></td><td></td>
+				</tr>
+				<tr>
+				<td id="p10">______</td>
+				<td id="p21"></td>
+				<td></td><td></td><td></td>
+				</tr>
+				<tr>
+				<td id="p11"><b>______</b></td>
+				<td></td><td></td><td></td><td></td>
+				</tr>
+				<tr>
+				<td><br /></td>
+				<td></td>
+				<td></td>
+				<td id="p29"></td>
+				<td></td>
+				</tr>
+				<tr>
+				<td id="p12"><b>______</b></td>
+				<td></td><td></td><td></td><td></td>
+				</tr>
+				<tr>
+				<td id="p13">______</td>
+				<td id="p22"></td>
+				<td></td><td></td><td></td>
+				</tr>
+				<tr>
+				<td><br /></td>
+				<td></td>
+				<td id="p27"></td>
+				<td></td><td></td>
+				</tr>
+				<tr>
+				<td id="p14">______ </td>
+				<td id="p23"></td>
+				<td></td><td></td><td></td>
+				</tr>
+				<tr>
+				<td id="p15"><b>______</b></td>
+				<td></td><td></td><td></td><td></td>
+				</tr>
+				</table>
+				<!-- fill in empty draw -->
+				<script type="text/javascript">		
+				for (var i=0; i<=currentTournament.numberMatches*2;i++) {
+					document.getElementById("p" + i).innerHTML = ("______");
+				}
+				</script>
+			</div>
+		
+		</div>
+	
+	
+		<div id = "stats">
+		
+			<h5>Season Stats</h5>
+		
+			<script type="text/javascript">
+			
+				var i=0, l = rankings.length;
+				for (i; i<l;i++) {
+					document.write("<b>" + (i+1) + ". " + rankings[i].firstName + " " + rankings[i].lastName + "</b><br />");
+					document.write("<ul>");
+					document.write("<li>" + rankings[i].points + " points</li>");
+					document.write("<li>0 title</li>");
+					document.write("<li>0-0 record</li>");
+					document.write("<li>Win %</li>");
+					document.write("<li>Season Results:</li>")
+					document.write("</ul>");
+				}
+	
+			</script>
+			
+		</div>
+		
+	</div>
+			
+	<div id="play">
+		<ul>	
+			<li id="drawButton"><a href="#" onclick="currentTournament.createDraw(); return false;">Draw</a></li>
+			<li id="matchButton"><a href="#" onclick="currentTournament.playNext(); return false;">Match</a></li>
+			<li id="roundButton"><a href="#" onclick="currentTournament.playRound(); return false;">Round</a></li>
+			<li id="tournieButton"><a href="#" onclick="currentTournament.playTournament(); return false;">&gt;&gt;</a></li>
+			<li id="nextButton"><a href="#" onclick="nextToPlay().goTo(); return false;">Next</a></li>
+			<li id="backButton"><a href="#" onclick="backToTournament(); return false;">Back</a></li>
+			<li id="startButton"><a href="http://collardeau.com/tennis">Start Over</a></li>
+			
+		</ul>
+	</div>
+			
+	<div id = "footer">
+		Tennis Tour 2010 Simulation<br />
+		<a href="http://twitter.com/my_tonton">Follow Collardeau</a> on Twitter.
+	</div>
+
+	<script type="text/javascript">
+		var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+		document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+	</script>
+	<script type="text/javascript">
+		try {
+			var pageTracker = _gat._getTracker("UA-5570751-4");
+			pageTracker._trackPageview();
+			} 
+		catch(err) {}
+	</script>
+	
+</body>  
+
+</html>  
